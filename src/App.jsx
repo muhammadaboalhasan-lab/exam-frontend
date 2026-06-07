@@ -1,7 +1,9 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
-import Home from './pages/Home';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router';
+import AllMovies from './pages/AllMovies';
 import { useEffect } from 'react';
-
+import NotFound from './pages/NotFound';
+import AddMovies from './pages/AddMovies';
+import SearchMovies from './pages/SearchMovies';
 function App() {
   useEffect(() => {
     {
@@ -17,7 +19,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Navigate to="/allMovies" />} />
+        <Route path="/allMovies" element={<AllMovies />} />
+        <Route path="/addNewMovie" element={<AddMovies />} />
+        <Route path="/searchMovie" element={<SearchMovies />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
