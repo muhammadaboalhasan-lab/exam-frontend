@@ -9,7 +9,7 @@ export const addMoviesStyles = {
   submitDisabled: 'cursor-not-allowed opacity-60',
   field: 'mb-4 flex flex-col gap-1.5',
   label: 'text-sm font-medium text-neutral-700',
-  labelRow: 'flex items-center justify-between gap-3',
+  labelRow: 'flex flex-wrap items-center justify-between gap-2',
   aiBtn:
     'inline-flex items-center gap-1.5 rounded-md border border-red-200 bg-red-50 px-2.5 py-1 text-xs font-semibold text-red-600 transition-colors hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-60',
   aiError: 'mt-1 text-xs font-medium text-red-600',

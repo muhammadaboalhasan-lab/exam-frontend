@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router';
-import { Film, LayoutGrid, Plus, Search } from 'lucide-react';
-import { asideStyles } from './asideStyle';
+import { Film, LayoutGrid, Plus, Search, Menu, X } from 'lucide-react';
+import { asideStyles as s } from './asideStyle';
 
 const links = [
   { to: '/allMovies', label: 'All Movies', icon: LayoutGrid },
@@ -9,33 +10,45 @@ const links = [
 ];
 
 function Aside() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <aside className={asideStyles.aside}>
-      <div>
-        <div className={asideStyles.brand}>
-          <span className={asideStyles.brandIcon}>
+    <aside className={s.aside}>
+      <div className={s.top}>
+        <div className={s.brand}>
+          <span className={s.brandIcon}>
             <Film size={18} />
           </span>
-          <span className={asideStyles.brandText}>Watchlist</span>
+          <span className={s.brandText}>Watchlist</span>
         </div>
-
-        <nav className={asideStyles.nav}>
-          {links.map(({ to, label, icon: Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                `${asideStyles.link} ${isActive ? asideStyles.linkActive : ''}`
-              }
-            >
-              <Icon size={18} />
-              {label}
-            </NavLink>
-          ))}
-        </nav>
+        <button
+          type="button"
+          className={s.toggle}
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+        >
+          {open ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </div>
 
-      <p className={asideStyles.footer}>Your personal movie tracker</p>
+      <nav className={`${s.nav} ${open ? s.navOpen : s.navClosed}`}>
+        {links.map(({ to, label, icon: Icon }) => (
+          <NavLink
+            key={to}
+            to={to}
+            onClick={() => setOpen(false)}
+            className={({ isActive }) =>
+              `${s.link} ${isActive ? s.linkActive : ''}`
+            }
+          >
+            <Icon size={18} />
+            {label}
+          </NavLink>
+        ))}
+      </nav>
+
+      <p className={s.footer}>Your personal movie tracker</p>
     </aside>
   );
 }
