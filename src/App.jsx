@@ -3,7 +3,7 @@ import AllMovies from './pages/AllMovies';
 import NotFound from './pages/NotFound';
 import AddMovies from './pages/AddMovies';
 import SearchMovies from './pages/SearchMovies';
-import MovieContextProvider from '../Contexts/MovieContextProvider';
+import MovieContextProvider from './Contexts/MovieContextProvider';
 function App() {
   return (
     <MovieContextProvider>
